@@ -40,7 +40,6 @@ describe('c-search-order-records', () => {
     it('get mock data', ()=>{
         getOrderList.mockResolvedValue(mockOrderList)
         const element = document.querySelector('c-search-order-records')
-        element.orderList = "Test Order";
         element.noRecordsFound = false;
         const buttonElement = element.shadowRoot.querySelector('lightning-input')
         buttonElement.dispatchEvent(new CustomEvent('change'))
@@ -55,8 +54,7 @@ describe('c-search-order-records', () => {
     it('test', ()=>{
         getOrderList.mockResolvedValue(mockOrderList)
         const element = document.querySelector('c-search-order-records')
-        document.body.appendChild(element);
-        // Property value is assigned after the component is inserted into the DOM
+        document.body.appendChild(element);                                     // Property value is assigned after the component is inserted into the DOM
         element.ProductList = "Test Order";
         element.noRecordsFound = false;
         return Promise.resolve().then(() => {                                   // Use a promise to wait for asynchronous changes to the DOM
