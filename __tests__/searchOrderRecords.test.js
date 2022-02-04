@@ -51,7 +51,7 @@ describe('c-search-order-records', () => {
         })
     })
 
-    it('test', ()=>{
+    it('test properties', ()=>{
         getOrderList.mockResolvedValue(mockOrderList)
         const element = document.querySelector('c-search-order-records')
         document.body.appendChild(element);                                     // Property value is assigned after the component is inserted into the DOM
