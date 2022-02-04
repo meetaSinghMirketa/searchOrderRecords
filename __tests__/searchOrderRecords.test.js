@@ -4,7 +4,7 @@ import searchOrderRecords from 'c/searchOrderRecords';
 import getOrderList from '@salesforce/apex/Controller.searchOrders';
 
 // Realistic data with a list of contacts
-const mockOrderList = require('./data/IWCdatatable.json');
+const mockOrderList = require('./data/searchOrderRecord.json');
 jest.mock(
     '@salesforce/apex/Controller.searchOrders',
     () => {
@@ -37,24 +37,8 @@ describe('c-search-order-records', () => {
         })
     })
 
-    test('onChange test values', () =>{
-        // eslint-disable-next-line @lwc/lwc/no-document-query
-        const element = document.querySelector('c-search-order-records')
-        element.orderList = "Test Order";
-        element.noRecordsFound = false;
-        document.body.appendChild(element);
-        const inputElement = element.shadowRoot.querySelector('lightning-input')
-        inputElement.dispatchEvent(new CustomEvent('change'))
-        const text = element.shadowRoot.querySelector('Lightning-datatable');
-        return Promise.resolve().then(()=>{
-            expect(text.textContent).toBe('')
-        })
-
-    })
-
     it('get mock data', ()=>{
         getOrderList.mockResolvedValue(mockOrderList)
-        // eslint-disable-next-line @lwc/lwc/no-document-query
         const element = document.querySelector('c-search-order-records')
         element.orderList = "Test Order";
         element.noRecordsFound = false;
@@ -75,8 +59,7 @@ describe('c-search-order-records', () => {
         // Property value is assigned after the component is inserted into the DOM
         element.ProductList = "Test Order";
         element.noRecordsFound = false;
-        // Use a promise to wait for asynchronous changes to the DOM
-        return Promise.resolve().then(() => {
+        return Promise.resolve().then(() => {                                   // Use a promise to wait for asynchronous changes to the DOM
             expect(element.noRecordsFound).not.toContain('false');
             expect(element.ProductList).toContain('Test Order');
         })
