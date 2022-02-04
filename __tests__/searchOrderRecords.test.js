@@ -1,9 +1,6 @@
 import { createElement } from 'lwc';
 import searchOrderRecords from 'c/searchOrderRecords';
-
 import getOrderList from '@salesforce/apex/Controller.searchOrders';
-
-// Realistic data with a list of contacts
 const mockOrderList = require('./data/searchOrderRecord.json');
 jest.mock(
     '@salesforce/apex/Controller.searchOrders',
